@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ComicInfo xsi:noNamespaceSchemaLocation="schema.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Title>_NAME_ENGLISH_</Title>
+  <Series>_NAME_ENGLISH_</Series>
+  <Count>_COUNT_</Count>
+  <AlternateSeries>_NAME_ROMAJI_</AlternateSeries>
+  <Summary>_DESC_</Summary>
+  <Year>_STARTING_YEAR_</Year>
+  <Month>_STARTING_MONTH_</Month>
+  <Day>_STARTING_DAY_</Day>
+  <Genre>_GENRES_</Genre>
+  <Web>https://anilist.co/anime/_ANILIST_ID_</Web>
+  <LanguageISO>en</LanguageISO>
+  <Manga>Yes</Manga>
+  <CommunityRating>_AVERAGE_SCORE_</CommunityRating>
+</ComicInfo>
+
+

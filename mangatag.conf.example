@@ -1,0 +1,26 @@
+################################################################################################################################
+# Library folder paths, you can add how many you want.
+# If using docker, the paths should be accessible from inside the container.
+################################################################################################################################
+library=( "/path/mangalibrary1" "/path/mangalibrary2" )
+
+################################################################################################################################
+# Do you want to update the metadata from Anilist regulary?
+# Normally the metadata is fetched once, and then the local version will be used.
+# If you want to refresh the metadata, set this to the number of days before the metadata is considered stale.
+#
+# This will replace all ComicInfo.xml and Covers, regardless if they are changed on Anilist or not.
+#
+# Example:
+# metadata_stale="7"
+################################################################################################################################
+metadata_stale=""
+
+################################################################################################################################
+# If you hit Anilist:s API limit, you can add a sleep number here, which will be used between every manga lookup.
+# Example:
+# sleep_number="1s"
+# sleep_number="5s"
+# sleep_number="1m"
+################################################################################################################################
+sleep_number=""
