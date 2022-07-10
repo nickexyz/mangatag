@@ -106,8 +106,8 @@ steps:
       password:
         from_secret: reg_pwd
       tags:
-        - ${DRONE_SEMVER_SHORT}
-        - latest
+        - ${DRONE_SEMVER_SHORT}-arm64
+        - latest-arm64
   - name: Notification if build succeeded
     image: alpine:latest
     pull: if-not-exists
