@@ -161,7 +161,7 @@ steps:
     commands:
       - apk add curl
       - |
-        curl -s -u "$NTFY_USERNAME":"$NTFY_PASSWORD" -H "tags:timer_clock" -H "X-Title: Drone" -d "mangatag AMD64 DEV build STARTED: ${DRONE_SEMVER_SHORT}" "$NTFY_URL"
+        curl -s -u "$NTFY_USERNAME":"$NTFY_PASSWORD" -H "tags:timer_clock" -H "X-Title: Drone" -d "mangatag AMD64 DEV build STARTED" "$NTFY_URL"
     environment:
       NTFY_URL:
         from_secret: ntfy_url
@@ -188,7 +188,7 @@ steps:
     commands:
       - apk add curl
       - |
-        curl -s -u "$NTFY_USERNAME":"$NTFY_PASSWORD" -H "tags:heavy_check_mark" -H "X-Title: Drone" -d "mangatag AMD64 DEV build done: ${DRONE_SEMVER_SHORT}" "$NTFY_URL"
+        curl -s -u "$NTFY_USERNAME":"$NTFY_PASSWORD" -H "tags:heavy_check_mark" -H "X-Title: Drone" -d "mangatag AMD64 DEV build done" "$NTFY_URL"
     environment:
       NTFY_URL:
         from_secret: ntfy_url
@@ -205,7 +205,7 @@ steps:
     commands:
       - apk add curl
       - |
-        curl -s -u "$NTFY_USERNAME":"$NTFY_PASSWORD" -H "tags:x" -H "X-Title: Drone" -d "mangatag AMD64 DEV build FAILURE: ${DRONE_SEMVER_SHORT}" "$NTFY_URL"
+        curl -s -u "$NTFY_USERNAME":"$NTFY_PASSWORD" -H "tags:x" -H "X-Title: Drone" -d "mangatag AMD64 DEV build FAILURE" "$NTFY_URL"
     environment:
       NTFY_URL:
         from_secret: ntfy_url
