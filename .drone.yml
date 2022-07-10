@@ -24,8 +24,7 @@ steps:
     pull: if-not-exists
     settings:
       dockerfile: Dockerfile
-      repo: registry.hub.docker.com/nickexyz/mangatag
-      registry: registry.hub.docker.com
+      repo: nickexyz/mangatag
       force_tag: true
       username:
         from_secret: reg_usr
@@ -100,8 +99,7 @@ steps:
     pull: if-not-exists
     settings:
       dockerfile: Dockerfile
-      repo: registry.hub.docker.com/nickexyz/mangatag
-      registry: registry.hub.docker.com
+      repo: nickexyz/mangatag
       force_tag: true
       username:
         from_secret: reg_usr
