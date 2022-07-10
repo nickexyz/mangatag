@@ -76,7 +76,7 @@ trigger:
 
 kind: pipeline
 type: docker
-name: Build ARM64 LIVE
+name: Build ARM64
 platform:
   os: linux
   arch: arm64
