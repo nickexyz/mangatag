@@ -1,0 +1,149 @@
+kind: pipeline
+type: docker
+name: Build AMD64
+platform:
+  os: linux
+  arch: amd64
+steps:
+  - name: Notification when build starts
+    image: alpine:latest
+    pull: if-not-exists
+    commands:
+      - apk add curl
+      - |
+        curl -s -u "$NTFY_USERNAME":"$NTFY_PASSWORD" -H "tags:timer_clock" -H "X-Title: Drone" -d "mangatag AMD64 build STARTED: ${DRONE_SEMVER_SHORT}" "$NTFY_URL"
+    environment:
+      NTFY_URL:
+        from_secret: ntfy_url
+      NTFY_USERNAME:
+        from_secret: ntfy_usr
+      NTFY_PASSWORD:
+        from_secret: ntfy_pwd
+  - name: Build AMD64
+    image: plugins/docker
+    pull: if-not-exists
+    settings:
+      dockerfile: Dockerfile
+      repo: registry.hub.docker.com/nickexyz/mangatag
+      registry: registry.hub.docker.com
+      force_tag: true
+      username:
+        from_secret: reg_usr
+      password:
+        from_secret: reg_pwd
+      tags:
+        - ${DRONE_SEMVER_SHORT}
+        - latest
+  - name: Notification if build succeeded
+    image: alpine:latest
+    pull: if-not-exists
+    commands:
+      - apk add curl
+      - |
+        curl -s -u "$NTFY_USERNAME":"$NTFY_PASSWORD" -H "tags:heavy_check_mark" -H "X-Title: Drone" -d "mangatag AMD64 build done: ${DRONE_SEMVER_SHORT}" "$NTFY_URL"
+    environment:
+      NTFY_URL:
+        from_secret: ntfy_url
+      NTFY_USERNAME:
+        from_secret: ntfy_usr
+      NTFY_PASSWORD:
+        from_secret: ntfy_pwd
+    when:
+      status:
+      - success
+  - name: Notification if build failed
+    image: alpine:latest
+    pull: if-not-exists
+    commands:
+      - apk add curl
+      - |
+        curl -s -u "$NTFY_USERNAME":"$NTFY_PASSWORD" -H "tags:x" -H "X-Title: Drone" -d "mangatag AMD64 build FAILURE: ${DRONE_SEMVER_SHORT}" "$NTFY_URL"
+    environment:
+      NTFY_URL:
+        from_secret: ntfy_url
+      NTFY_USERNAME:
+        from_secret: ntfy_usr
+      NTFY_PASSWORD:
+        from_secret: ntfy_pwd
+    when:
+      status:
+      - failure
+trigger:
+  ref:
+  - refs/tags/*
+
+---
+
+kind: pipeline
+type: docker
+name: Build ARM64 LIVE
+platform:
+  os: linux
+  arch: arm64
+steps:
+  - name: Notification when build starts
+    image: alpine:latest
+    pull: if-not-exists
+    commands:
+      - apk add curl
+      - |
+        curl -s -u "$NTFY_USERNAME":"$NTFY_PASSWORD" -H "tags:timer_clock" -H "X-Title: Drone" -d "mangatag ARM64 build STARTED: ${DRONE_SEMVER_SHORT}" "$NTFY_URL"
+    environment:
+      NTFY_URL:
+        from_secret: ntfy_url
+      NTFY_USERNAME:
+        from_secret: ntfy_usr
+      NTFY_PASSWORD:
+        from_secret: ntfy_pwd
+  - name: Build ARM64
+    image: plugins/docker
+    pull: if-not-exists
+    settings:
+      dockerfile: Dockerfile
+      repo: registry.hub.docker.com/nickexyz/mangatag
+      registry: registry.hub.docker.com
+      force_tag: true
+      username:
+        from_secret: reg_usr
+      password:
+        from_secret: reg_pwd
+      tags:
+        - ${DRONE_SEMVER_SHORT}
+        - latest
+  - name: Notification if build succeeded
+    image: alpine:latest
+    pull: if-not-exists
+    commands:
+      - apk add curl
+      - |
+        curl -s -u "$NTFY_USERNAME":"$NTFY_PASSWORD" -H "tags:heavy_check_mark" -H "X-Title: Drone" -d "mangatag ARM64 build done: ${DRONE_SEMVER_SHORT}" "$NTFY_URL"
+    environment:
+      NTFY_URL:
+        from_secret: ntfy_url
+      NTFY_USERNAME:
+        from_secret: ntfy_usr
+      NTFY_PASSWORD:
+        from_secret: ntfy_pwd
+    when:
+      status:
+      - success
+  - name: Notification if build failed
+    image: alpine:latest
+    pull: if-not-exists
+    commands:
+      - apk add curl
+      - |
+        curl -s -u "$NTFY_USERNAME":"$NTFY_PASSWORD" -H "tags:x" -H "X-Title: Drone" -d "mangatag ARM64 build FAILURE: ${DRONE_SEMVER_SHORT}" "$NTFY_URL"
+    environment:
+      NTFY_URL:
+        from_secret: ntfy_url
+      NTFY_USERNAME:
+        from_secret: ntfy_usr
+      NTFY_PASSWORD:
+        from_secret: ntfy_pwd
+    when:
+      status:
+      - failure
+trigger:
+  ref:
+  - refs/tags/*
