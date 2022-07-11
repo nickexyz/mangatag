@@ -13,14 +13,14 @@ RUN \
     jq \
     python3 \
     py3-numpy \
-    py3-requests
+    py3-mypy \
+    py3-requests \
     py3-pip && \
   echo "**** Install AnilistPython ****" && \
   python3 -m pip install --upgrade pip && \
   pip3 install -U --no-cache-dir \
     wheel && \
   pip3 install -U --no-cache-dir \
-    msilib \
     AnilistPython==0.1.3 && \
   pip3 cache purge && \
 # Cleanup
