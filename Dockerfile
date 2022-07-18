@@ -1,4 +1,4 @@
-FROM docker.io/library/alpine:3.16.0
+FROM docker.io/library/alpine:3.16.1
 RUN \
   echo "**** install packages ****" && \
   apk add -U --update --no-cache --virtual=build-dependencies \
